@@ -61,10 +61,13 @@ ENV POSTGIS_VERSION=3.6 \
     PAM_OAUTH2=v1.0.1
 
 WORKDIR /builddeps
-RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 /usr/lib/postgresql/17/bin \
     && apt-get update \
-    && apt-get install -y --no-install-recommends postgresql-common \
-    && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y || true
+    && apt-get install -y --no-install-recommends curl ca-certificates gnupg lsb-release \
+    && curl -fL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends postgresql-17 postgresql-client-17
 RUN bash -x base.sh
 
 # Install wal-g
