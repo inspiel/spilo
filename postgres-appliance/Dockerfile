@@ -61,6 +61,8 @@ ENV POSTGIS_VERSION=3.6 \
     PAM_OAUTH2=v1.0.1
 
 WORKDIR /builddeps
+
+ENV DEBIAN_FRONTEND=noninteractive
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 /usr/lib/postgresql/17/bin \
     && apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates gnupg lsb-release \
