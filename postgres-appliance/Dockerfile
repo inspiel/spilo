@@ -61,6 +61,10 @@ ENV POSTGIS_VERSION=3.6 \
     PAM_OAUTH2=v1.0.1
 
 WORKDIR /builddeps
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends postgresql-common \
+    && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y || true
 RUN bash -x base.sh
 
 # Install wal-g
