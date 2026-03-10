@@ -61,7 +61,7 @@ ENV POSTGIS_VERSION=3.6 \
     PAM_OAUTH2=v1.0.1
 
 WORKDIR /builddeps
-RUN bash base.sh
+RUN bash -x base.sh
 
 # Install wal-g
 COPY --from=dependencies-builder /builddeps/wal-g /usr/local/bin/
