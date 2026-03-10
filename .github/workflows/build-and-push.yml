@@ -33,7 +33,7 @@ jobs:
           build-args: |
             WITH_PERL=true
             PGVERSION=17
-            PGOLDVERSIONS=13 14 15 16
+            PGOLDVERSIONS=16
             TIMESCALEDB_APACHE_ONLY=false
             TIMESCALEDB_TOOLKIT=true
             ADDITIONAL_LOCALES=en_US
